@@ -1,3 +1,5 @@
+import time
+
 import pandas as pd
 from datetime import datetime
 from bs4 import BeautifulSoup
@@ -65,7 +67,10 @@ def get_download_stock(market_type=None):
 def naver_stock(company,code,pages_to_fetch):
     url = f"http://finance.naver.com/item/sise_day.nhn?code={code}"
     html = BeautifulSoup(requests.get(url,
-                                      headers={'User-agent': 'Mozilla/5.0'}).text, "lxml")
+                                      headers={'User-agent': "Mozilla/5.0 (Windows NT 10.0; Win64; x64) "
+                                                             "AppleWebKit/537.36 (KHTML, like Gecko) "
+                                                             "Chrome/90.0.4430.212 "
+                                                             "Safari/537.36"}).text, "lxml")
     pgrr = html.find("td", class_="pgRR")
     s = str(pgrr.a["href"]).split('=')
     lastpage = s[-1]
@@ -74,7 +79,9 @@ def naver_stock(company,code,pages_to_fetch):
     for page in range(1, pages + 1):
         pg_url = '{}&page={}'.format(url, page)
         df = df.append(pd.read_html(requests.get(pg_url,
-                                                 headers={'User-agent': 'Mozilla/5.0'}).text)[0])
+                                                 headers={'User-agent': "Mozilla/5.0 (Windows NT 10.0; Win64; x64) "
+                                                                        "AppleWebKit/537.36 (KHTML, like Gecko) "
+                                                                        "Chrome/90.0.4430.212 Safari/537.36"}).text)[0])
         tmnow = datetime.now().strftime('%Y-%m-%d %H:%M')
         print('[{}] {} ({}) : {:04d}/{:04d} pages are downloading...'.
               format(tmnow, company, code, page, pages), end="\r")
