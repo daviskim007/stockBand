@@ -7,7 +7,7 @@ from tqdm import tqdm
 from time import sleep
 
 pages_to_fetch = 20
-cnt = 8
+cnt = 17
 loopcnt = 22
 
 if __name__ == '__main__':
@@ -36,7 +36,7 @@ if __name__ == '__main__':
                 # 상한선이 후행스팬 값보다 높은 경우만
                 value_df = value_df.loc[value_df['bb_up'] >= value_df['chikou_span'], :]
 
-                if value_df['20210429':].empty:
+                if value_df['20210503':].empty:
                     continue
                 else:
                     realCompanyList.append(company)
