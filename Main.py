@@ -7,7 +7,7 @@ from tqdm import tqdm
 from time import sleep
 
 pages_to_fetch = 20
-cnt = 8
+cnt = 1
 loopcnt = 22
 
 if __name__ == '__main__':
@@ -31,12 +31,12 @@ if __name__ == '__main__':
                 chikou_span = IchimokuChart.ichimoku(df)[['chikou_span']]
                 # 세로 방향으로 이어 붙이기
                 merged_df = pd.concat([upper, chikou_span], axis=1, sort=False)
-                # 두 지표 값 비교해서 절대값이 0.005 비율 내에 있으면 찾기
-                value_df = merged_df[abs((merged_df['bb_up'] - merged_df['chikou_span'])) <= merged_df['bb_up'] * 0.005]
+                # 두 지표 값 비교해서 절대값이 0.010 비율 내에 있으면 찾기
+                value_df = merged_df[abs((merged_df['bb_up'] - merged_df['chikou_span'])) <= merged_df['bb_up'] * 0.010]
                 # 상한선이 후행스팬 값보다 높은 경우만
                 value_df = value_df.loc[value_df['bb_up'] >= value_df['chikou_span'], :]
 
-                if value_df['20210429':].empty:
+                if value_df['20210510':].empty:
                     continue
                 else:
                     realCompanyList.append(company)
