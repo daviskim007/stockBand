@@ -1,5 +1,3 @@
-import time
-
 import pandas as pd
 from datetime import datetime
 from bs4 import BeautifulSoup
@@ -8,7 +6,7 @@ import requests
 stockOfCompany = "삼성전자"
 period = None
 realCompany = []
-cnt = 0
+cnt = 7
 pages_to_fetch = 10
 # 종목 타입에 따라 download url이 다름. 종목 코드 뒤에 .KS .KQ 등이 입력되어야 해서 Download Link 구분 필요
 stock_type = {

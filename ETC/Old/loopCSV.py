@@ -1,6 +1,5 @@
 import CSV
 
-
 filtered_data = CSV.csvReader('companyBydeletingSuspended.csv')
 cnt = 1
 for splicied in range(0, len(filtered_data), 100):

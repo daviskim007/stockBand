@@ -5,11 +5,11 @@ import CSV
 from Crawling import Stock
 from Indicators import Bollinger,IchimokuChart
 
-cnt = ['1','2','3','4','5','6','7','8','9','10','11','12','13','14','15','16','17','18','19','20','21','22','23','24']
+cnt = ['1','2','3','4','5','6','7','8','9','10','11','12','13','14','15','16','17','18','19','20','21']
 
 def data(cnt):
     realCompanyList = []
-    message = f"filtered/subs/filtered_data{cnt}.csv"
+    message = f"../subs/filtered_data{cnt}.csv"
     # csv 파일로부터 companyList 가져옴
     companyList = CSV.csvReader(message)
     for company in tqdm(companyList):
@@ -29,15 +29,15 @@ def data(cnt):
             # 상한선이 후행스팬 값보다 높은 경우만
             value_df = value_df.loc[value_df['bb_up'] >= value_df['chikou_span'], :]
 
-            if value_df['20210512':].empty:
+            if value_df['20210511':].empty:
                 continue
             else:
                 realCompanyList.append(company)
 
         except AttributeError:
             continue
-    CSV.csvAdditer('filtered/subs/realCompanyList.csv', realCompanyList)
-    print(f"finish {cnt} file")
+    CSV.csvAdditer('realCompanyList.csv', realCompanyList)
+
 
 if __name__ == '__main__':
     p = multiprocessing.Pool(processes=4)
